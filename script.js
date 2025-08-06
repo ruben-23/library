@@ -21,7 +21,7 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
-    if(!title || !author || !pages) {
+    if (!title || !author || !pages) {
         console.error("Enter all book properties");
         return;
     }
@@ -34,7 +34,7 @@ function addBookToLibrary(title, author, pages, read) {
 function createBookCard(book) {
     const booksContainer = document.querySelector('.books-container');
     const bookCard = document.createElement('div')
-    bookCard.setAttribute('class','book-card');
+    bookCard.setAttribute('class', 'book-card');
     bookCard.setAttribute('id', book.id)
 
     const title = document.createElement('h2');
@@ -50,14 +50,14 @@ function createBookCard(book) {
     readStatus.textContent = `${book.read ? 'Read' : 'Not Read'}`;
 
     const cardActions = document.createElement('div')
-    cardActions.setAttribute('class','card-actions');
+    cardActions.setAttribute('class', 'card-actions');
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
 
     const toggleReadButton = document.createElement('button');
     toggleReadButton.textContent = "Mark as read";
-    
+
     cardActions.append(deleteButton, toggleReadButton);
     bookCard.append(title, author, pages, readStatus, cardActions);
     booksContainer.appendChild(bookCard);
@@ -67,8 +67,15 @@ function createBookCard(book) {
 function displayBooks() {
     myLibrary.forEach((book) => {
         createBookCard(book);
-    } )
+    })
 }
+
+const dialog = document.getElementById('addBookDialog');
+const addButton = document.getElementById('addBookButton');
+const closeButton = document.getElementById('closeButton');
+
+addButton.addEventListener('click', () => { dialog.showModal(); });
+closeButton.addEventListener('click', () => { dialog.close(); });
 
 
 

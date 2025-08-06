@@ -1,4 +1,4 @@
-* {
+*:not(dialog) {
     margin: 0;
     padding: 0;
 }
@@ -43,8 +43,117 @@ body {
     width: clamp(200px, 300px, 400px);
 }
 
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#addBookButton,
+#submitButton {
+    background-color:rgb(142, 164, 255);
+    padding: 10px 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    font-size: 20px;
+
+}
+
+label {
+    font-size: 20px;
+}
+
+input[type=text],
+input[type=number] {
+    font-size: 20px;
+}
+
+input {
+    padding: 0px 5px;
+}
+
+dialog{
+    border: none;
+    border-radius: 10px;
+    width: clamp(500px, 25%, 600px);
+    height: clamp(600px, 50%, 700px);
+    padding: 0;
+}
+header{
+    background-color: rgb(219, 226, 255);
+    display: grid;
+    gap: 10px;
+    padding: 1.2rem;
+}
+
+header h1 {
+    justify-self: center;
+    align-self: center;
+    padding-bottom: 10px;
+}
+
+header button {
+    background-color: lightcoral;
+    justify-self: end;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid rgb(233, 166, 166);
+    border-radius: 10px;
+}
+
+.dialog-container {
+    background-color: rgb(250, 251, 255);
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+}
+
+dialog .form-container {
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+}
+
+dialog form>p {
+    display: grid;
+}
+
+dialog form {
+    display: grid;
+    width: 100%;
+    gap: 10px;
+}
+
+dialog form>p label {
+    align-self: center;
+}
+
+dialog fieldset {
+    padding: 10px;
+}
+
+fieldset legend {
+    font-size: 20px;
+}
+
+dialog footer{
+    background-color: rgb(219, 226, 255);
+    padding: 1.2rem;
+    display: grid;
+    justify-content: center;
+    gap: 15px;
+}
+
+::backdrop {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.3;
+}
+
 .footer {
-    background-color: azure;
+    background-color: rgb(219, 226, 255);
     display: grid;
     align-items: center;
     justify-items: center;

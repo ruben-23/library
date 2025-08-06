@@ -10,20 +10,65 @@
 </head>
 
 <body>
+
     <div class="header">
         <h1>Library</h1>
         <div class="action">
-            <button>Add Book</button>
+            <button id="addBookButton">Add Book</button>
         </div>
     </div>
     <div class="main-content">
         <div class="books-container">
-           
+
         </div>
     </div>
     <div class="footer">
         <p>Library Project</p>
     </div>
+    <dialog id="addBookDialog">
+        <div class="dialog-container">
+            <header>
+                <button id="closeButton">X</button>
+                <h1>Enter the book details</h1>
+            </header>
+            <div class="form-container">
+                <form id="bookForm">
+                    <p>
+                        <label for="book-title">Title</label>
+                        <input type="text" id="book-title" name="book-title">
+                    </p>
+                    <p>
+                        <label for="book-author">Author</label>
+                        <input type="text" id="book-author" name="book-author">
+                    </p>
+                    <p>
+                        <label for="book-pages">Number of pages</label>
+                        <input type="number" id="book-pages" name="book-pages">
+                    </p>
+                    <fieldset>
+                        <legend>Did you read it?</legend>
+            
+                            <p>
+                                <input type="radio" id="read-yes" name="read">
+                                <label for="read-yes">YES</label>
+                            </p>
+                            <p>
+                                <input type="radio" id="read-no" name="read">
+                                <label for="read-no">NO</label>
+                            </p>
+                    </fieldset>
+            
+                </form>
+            </div>
+            <footer>
+                <button form="bookForm" id="submitButton">Submit</button>
+            </footer>
+        </div>
+        
+    </dialog>
     <script src="./script.js"></script>
 </body>
+
+
+
 </html>
