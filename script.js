@@ -26,13 +26,14 @@ function addBookToLibrary(title, author, pages, read) {
     if (!title || !author || !pages) {
         console.error("Enter all book properties");
         alert('Enter all book details')
-        return;
+        return false;
     }
 
     let newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
     createBookCard(newBook);
+    return true;
 }
 
 function submitNewBook(e) {
@@ -43,9 +44,10 @@ function submitNewBook(e) {
     const pages = document.getElementById('book-pages').value;
     const readStatus = document.querySelector('input[name="read"]:checked').value;
 
-    addBookToLibrary(author, title, pages, (readStatus === "true"));
-    document.getElementById("bookForm").reset();
-    dialog.close();
+    if( addBookToLibrary(title, author, pages, (readStatus === "true"))){
+        document.getElementById("bookForm").reset();
+        dialog.close();
+    }
 }
 
 function createBookCard(book) {
@@ -70,7 +72,7 @@ function createBookCard(book) {
     cardActions.setAttribute('class', 'card-actions');
 
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    deleteButton.textContent = '😨 Delete';
 
     const toggleReadButton = document.createElement('button');
     toggleReadButton.textContent = `${!book.read ? 'Mark as read' : 'Mark as not read'}`;
@@ -80,14 +82,37 @@ function createBookCard(book) {
     bookCard.append(title, author, pages, readStatus, cardActions);
     booksContainer.appendChild(bookCard);
 
+    deleteButton.addEventListener('click',() => deleteBook(book.id));
     toggleReadButton.addEventListener('click', () => toggleReadStatus(book.id));
 
 }
 
 function displayBooks() {
+    const booksContainer = document.querySelector('.books-container');
+    booksContainer.innerHTML = '';
+    
+    if(myLibrary.length === 0){
+        const message = document.createElement("h1");
+        message.textContent = "😿 There are no books! Add some nice ones! 😸"
+        booksContainer.appendChild(message);
+        return;
+    }
+
     myLibrary.forEach((book) => {
         createBookCard(book);
     })
+}
+
+function deleteBook(id) {
+   myLibrary.forEach((book) => {
+    if(book.id === id){
+        const index = myLibrary.indexOf(book);
+        console.log(myLibrary.splice(index, 1));
+        return;
+    }
+   })
+   console.log('array:', myLibrary)
+   displayBooks();
 }
 
 function toggleReadStatus(id) {
