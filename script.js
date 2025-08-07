@@ -20,7 +20,7 @@ Book.prototype.toggleRead = function() {
     console.log('status after toggle', this.read);
 }
 
-myLibrary.push(new Book( 'The Hobbit', 'J.R.R. Tolkien', 295, true))
+// myLibrary.push(new Book( 'The Hobbit', 'J.R.R. Tolkien', 295, true))
 
 function addBookToLibrary(title, author, pages, read) {
     if (!title || !author || !pages) {
