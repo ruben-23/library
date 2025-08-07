@@ -44,10 +44,10 @@ function createBookCard(book) {
     author.textContent = book.author;
 
     const pages = document.createElement('p');
-    pages.textContent = `${book.pages} pages`;
+    pages.textContent = `🕮 ${book.pages} pages`;
 
     const readStatus = document.createElement('p');
-    readStatus.textContent = `${book.read ? 'Read' : 'Not Read'}`;
+    readStatus.textContent = `${book.read ? '✔️ Read' : '❌ Not Read'}`;
 
     const cardActions = document.createElement('div')
     cardActions.setAttribute('class', 'card-actions');
@@ -56,7 +56,8 @@ function createBookCard(book) {
     deleteButton.textContent = 'Delete';
 
     const toggleReadButton = document.createElement('button');
-    toggleReadButton.textContent = "Mark as read";
+    toggleReadButton.textContent = `${!book.read ? 'Mark as read' : 'Mark as not read'}`;
+    toggleReadButton.setAttribute('class', `${book.read ? 'mark-not-read' : 'mark-read'}`);
 
     cardActions.append(deleteButton, toggleReadButton);
     bookCard.append(title, author, pages, readStatus, cardActions);
