@@ -20,8 +20,6 @@ Book.prototype.toggleRead = function() {
     console.log('status after toggle', this.read);
 }
 
-// myLibrary.push(new Book( 'The Hobbit', 'J.R.R. Tolkien', 295, true))
-
 function addBookToLibrary(title, author, pages, read) {
     if (!title || !author || !pages) {
         console.error("Enter all book properties");
@@ -52,6 +50,13 @@ function submitNewBook(e) {
 
 function createBookCard(book) {
     const booksContainer = document.querySelector('.books-container');
+
+    // clear the message displayed if there are no books
+    // so it will not be treated as a valid cell in the grid 
+    if(myLibrary.length !== 0) {
+        booksContainer.innerHTML = '';
+    }
+
     const bookCard = document.createElement('div')
     bookCard.setAttribute('class', 'book-card');
     bookCard.setAttribute('data-id', book.id)
