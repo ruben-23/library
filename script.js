@@ -50,7 +50,7 @@ function createBookCard(book) {
     const booksContainer = document.querySelector('.books-container');
     const bookCard = document.createElement('div')
     bookCard.setAttribute('class', 'book-card');
-    bookCard.setAttribute('id', book.id)
+    bookCard.setAttribute('data-id', book.id)
 
     const title = document.createElement('h2');
     title.textContent = book.title;
