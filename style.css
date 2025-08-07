@@ -8,39 +8,96 @@ body {
     width: 100vw;
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: 0.5fr 5fr 0.5fr;
+    grid-template-rows: 0.5fr 5fr 0.3fr;
 }
 
 .header {
-    background-color: aliceblue;
-    padding: 0 20px;
+    background-color: rgb(245, 222, 179);
+    padding: 0 50px;
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
 
 }
 
 .action {
-    justify-self: center;
+    justify-self: end;
+    padding-right: 8vw;
 }
 
-.main-content{
-    background-color: aquamarine;
+.main-content {
+    background-color: rgba(158, 140, 117, 0.3);
     display: grid;
-    justify-items: center
+    justify-items: center;
+    padding: 20px;
+    overflow-y: auto;
 }
-
 
 .books-container {
-    background-color: red;
     height: 100%;
-    width: 80vw;
-
+    width: 90vw;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(200px, 0.5fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+    gap: 10px;
+    justify-content: center;
 }
 
 .book-card {
-    border: 2px solid black;
-    width: clamp(200px, 300px, 400px);
+    background-color: burlywood;
+    border: 1px solid rgb(193, 154, 107);
+    border-radius: 25px;
+    min-height: 200px;
+    max-height: 300px;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+    font-size: 18px;
+}
+
+.book-card h2 {
+    justify-self: center;
+}
+
+.book-card h3 {
+    justify-self: end;
+}
+
+.book-card h2,
+.book-card h3 {
+    border-bottom: 1px solid brown;
+}
+
+.book-card p {
+    justify-self: start;
+    padding: 0 20px;
+}
+
+.card-actions {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.card-actions button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.card-actions button:first-child {
+    background-color: lightcoral;
+}
+
+.mark-read {
+    background-color: rgb(104, 216, 104);
+}
+
+.mark-not-read {
+    background-color: rgb(231, 230, 230);
 }
 
 button {
@@ -53,11 +110,11 @@ button:hover {
 
 #addBookButton,
 #submitButton {
-    background-color:rgb(142, 164, 255);
+    background-color: rgb(179, 132, 116);
     padding: 10px 20px;
-    border: 1px solid lightgray;
+    border: 1px solid rgb(194, 163, 125);
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 22px;
 
 }
 
@@ -74,15 +131,16 @@ input {
     padding: 0px 5px;
 }
 
-dialog{
+dialog {
     border: none;
     border-radius: 10px;
     width: clamp(500px, 25%, 600px);
     height: clamp(600px, 50%, 700px);
     padding: 0;
 }
-header{
-    background-color: rgb(219, 226, 255);
+
+dialog header {
+    background-color: rgb(245, 222, 179);
     display: grid;
     gap: 10px;
     padding: 1.2rem;
@@ -105,7 +163,7 @@ header button {
 }
 
 .dialog-container {
-    background-color: rgb(250, 251, 255);
+    background-color: rgba(158, 140, 117, 0.1);
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 5fr 1fr;
@@ -139,8 +197,8 @@ fieldset legend {
     font-size: 20px;
 }
 
-dialog footer{
-    background-color: rgb(219, 226, 255);
+dialog footer {
+    background-color: rgb(245, 222, 179);
     padding: 1.2rem;
     display: grid;
     justify-content: center;
@@ -149,11 +207,11 @@ dialog footer{
 
 ::backdrop {
     background-color: rgb(0, 0, 0);
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 .footer {
-    background-color: rgb(219, 226, 255);
+    background-color: rgb(245, 222, 179);
     display: grid;
     align-items: center;
     justify-items: center;
