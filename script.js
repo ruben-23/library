@@ -23,12 +23,27 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
     if (!title || !author || !pages) {
         console.error("Enter all book properties");
+        alert('Enter all book details')
         return;
     }
 
     let newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
+    createBookCard(newBook);
+}
+
+function submitNewBook(e) {
+    e.preventDefault();
+
+    const title = document.getElementById('book-title').value;
+    const author = document.getElementById('book-author').value;
+    const pages = document.getElementById('book-pages').value;
+    const readStatus = document.querySelector('input[name="read"]:checked').value;
+
+    addBookToLibrary(author, title, pages, (readStatus === "true"));
+    document.getElementById("bookForm").reset();
+    dialog.close();
 }
 
 function createBookCard(book) {
@@ -64,7 +79,6 @@ function createBookCard(book) {
     booksContainer.appendChild(bookCard);
 }
 
-
 function displayBooks() {
     myLibrary.forEach((book) => {
         createBookCard(book);
@@ -78,7 +92,8 @@ const closeButton = document.getElementById('closeButton');
 addButton.addEventListener('click', () => { dialog.showModal(); });
 closeButton.addEventListener('click', () => { dialog.close(); });
 
-
+const submitButton = document.getElementById('submitButton');
+submitButton.addEventListener('click', submitNewBook);
 
 
 displayBooks();
