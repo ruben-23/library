@@ -1,11 +1,5 @@
 
-let myLibrary = [{
-    id: crypto.randomUUID(),
-    title: 'The Hobbit',
-    author: 'J.R.R. Tolkien',
-    pages: 295,
-    read: true
-},];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
@@ -19,6 +13,14 @@ function Book(title, author, pages, read) {
     }
 
 }
+
+Book.prototype.toggleRead = function() {
+    console.log('current status', this.read);
+    this.read = (this.read === true ? false : true);
+    console.log('status after toggle', this.read);
+}
+
+myLibrary.push(new Book( 'The Hobbit', 'J.R.R. Tolkien', 295, true))
 
 function addBookToLibrary(title, author, pages, read) {
     if (!title || !author || !pages) {
@@ -77,12 +79,36 @@ function createBookCard(book) {
     cardActions.append(deleteButton, toggleReadButton);
     bookCard.append(title, author, pages, readStatus, cardActions);
     booksContainer.appendChild(bookCard);
+
+    toggleReadButton.addEventListener('click', () => toggleReadStatus(book.id));
+
 }
 
 function displayBooks() {
     myLibrary.forEach((book) => {
         createBookCard(book);
     })
+}
+
+function toggleReadStatus(id) {
+    console.log(id);
+    myLibrary.forEach((book) => {
+        console.log(book);
+        if(book.id === id){
+            book.toggleRead();
+            
+            const card = document.querySelector(`[data-id="${book.id}"`);
+            const readStatus = card.querySelector('p:last-of-type');
+            const toggleReadButton = card.querySelector('button:last-of-type');
+
+            readStatus.textContent = `${book.read ? '✔️ Read' : '❌ Not Read'}`;
+            toggleReadButton.textContent = `${!book.read ? 'Mark as read' : 'Mark as not read'}`;
+            toggleReadButton.setAttribute('class', `${book.read ? 'mark-not-read' : 'mark-read'}`);
+
+            return;
+        }
+    })
+
 }
 
 const dialog = document.getElementById('addBookDialog');
