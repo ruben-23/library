@@ -1,21 +1,33 @@
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+// function Book(title, author, pages, read) {
 
-    this.info = function () {
+
+//     this.info = function () {
+//         return `${this.title} by ${this.author}, ${pages} pages, ${read ? 'read' : 'not read yet'}`;
+//     }
+
+// }
+
+class Book {
+
+    constructor(title, author, pages, read) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info() {
         return `${this.title} by ${this.author}, ${pages} pages, ${read ? 'read' : 'not read yet'}`;
     }
 
-}
+    toggleRead() {
+        this.read = (this.read === true ? false : true);
+    }
 
-Book.prototype.toggleRead = function() {
-    this.read = (this.read === true ? false : true);
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -40,7 +52,7 @@ function submitNewBook(e) {
     const pages = document.getElementById('book-pages').value;
     const readStatus = document.querySelector('input[name="read"]:checked').value;
 
-    if( addBookToLibrary(title, author, pages, (readStatus === "true"))){
+    if (addBookToLibrary(title, author, pages, (readStatus === "true"))) {
         document.getElementById("bookForm").reset();
         dialog.close();
     }
@@ -79,7 +91,7 @@ function createBookCard(book) {
     bookCard.append(title, author, pages, readStatus, cardActions);
     booksContainer.appendChild(bookCard);
 
-    deleteButton.addEventListener('click',() => deleteBook(book.id));
+    deleteButton.addEventListener('click', () => deleteBook(book.id));
     toggleReadButton.addEventListener('click', () => toggleReadStatus(book.id));
 
 }
@@ -87,8 +99,8 @@ function createBookCard(book) {
 function displayBooks() {
     const booksContainer = document.querySelector('.books-container');
     booksContainer.innerHTML = '';
-    
-    if(myLibrary.length === 0){
+
+    if (myLibrary.length === 0) {
         const message = document.createElement("h1");
         message.textContent = "😿 There are no books! Add some nice ones! 😸"
         booksContainer.appendChild(message);
@@ -101,20 +113,20 @@ function displayBooks() {
 }
 
 function deleteBook(id) {
-   myLibrary.forEach((book) => {
-    if(book.id === id){
-        const index = myLibrary.indexOf(book);
-        return;
-    }
-   })
-   displayBooks();
+    myLibrary.forEach((book) => {
+        if (book.id === id) {
+            const index = myLibrary.indexOf(book);
+            return;
+        }
+    })
+    displayBooks();
 }
 
 function toggleReadStatus(id) {
     myLibrary.forEach((book) => {
-        if(book.id === id){
+        if (book.id === id) {
             book.toggleRead();
-            
+
             const card = document.querySelector(`[data-id="${book.id}"`);
             const readStatus = card.querySelector('p:last-of-type');
             const toggleReadButton = card.querySelector('button:last-of-type');
