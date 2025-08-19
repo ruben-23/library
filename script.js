@@ -30,7 +30,7 @@ function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
-    createBookCard(newBook);
+    displayBooks();
     return true;
 }
 
@@ -53,9 +53,9 @@ function createBookCard(book) {
 
     // clear the message displayed if there are no books
     // so it will not be treated as a valid cell in the grid 
-    if(myLibrary.length !== 0) {
-        booksContainer.innerHTML = '';
-    }
+    // if(myLibrary.length !== 0) {
+    //     booksContainer.innerHTML = '';
+    // }
 
     const bookCard = document.createElement('div')
     bookCard.setAttribute('class', 'book-card');
