@@ -15,9 +15,7 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.toggleRead = function() {
-    console.log('current status', this.read);
     this.read = (this.read === true ? false : true);
-    console.log('status after toggle', this.read);
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -50,12 +48,6 @@ function submitNewBook(e) {
 
 function createBookCard(book) {
     const booksContainer = document.querySelector('.books-container');
-
-    // clear the message displayed if there are no books
-    // so it will not be treated as a valid cell in the grid 
-    // if(myLibrary.length !== 0) {
-    //     booksContainer.innerHTML = '';
-    // }
 
     const bookCard = document.createElement('div')
     bookCard.setAttribute('class', 'book-card');
@@ -112,18 +104,14 @@ function deleteBook(id) {
    myLibrary.forEach((book) => {
     if(book.id === id){
         const index = myLibrary.indexOf(book);
-        console.log(myLibrary.splice(index, 1));
         return;
     }
    })
-   console.log('array:', myLibrary)
    displayBooks();
 }
 
 function toggleReadStatus(id) {
-    console.log(id);
     myLibrary.forEach((book) => {
-        console.log(book);
         if(book.id === id){
             book.toggleRead();
             
